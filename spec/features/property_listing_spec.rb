@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative 'web_helper'
 
 feature 'View listing' do
   scenario 'user can view list of properties' do
@@ -13,12 +14,7 @@ end
 
 feature 'Create listing' do
   scenario 'user can add a new listing' do
-    visit '/spaces/new'
-    fill_in('name', with: 'sup3r cool house')
-    fill_in('location', with: 'sup3r village')
-    fill_in('description', with: 'where sup3r cool people live')
-    fill_in('price', with: '200')
-    click_button 'Add Property'
+    new_space
     expect(page).to have_content 'sup3r cool house'
     expect(page).to have_content 'sup3r village'
     expect(page).to have_content 'where sup3r cool people live'

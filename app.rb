@@ -1,5 +1,4 @@
 ENV['RACK_ENV'] ||= 'development'
-
 require 'sinatra/base'
 require_relative 'models/data_mapper_setup'
 require 'sinatra/flash'
@@ -26,7 +25,10 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/spaces' do
-    @properties = Property.create(name: params[:name], location: params[:location], description: params[:description], price: params[:price])
+    @properties = Property.create(name: params[:name],
+                                  location: params[:location],
+                                  description: params[:description],
+                                  price: params[:price])
     if @properties.save
       redirect '/spaces'
     else

@@ -33,3 +33,12 @@ def wrong_email_sign_up
   fill_in :password_confirmation, with: "secret"
   click_button "Sign up"
 end
+
+def new_space
+  visit '/spaces/new'
+  fill_in('name', with: 'sup3r cool house')
+  fill_in('location', with: 'sup3r village')
+  fill_in('description', with: 'where sup3r cool people live')
+  fill_in('price', with: '200')
+  click_button 'Add Property'
+end
