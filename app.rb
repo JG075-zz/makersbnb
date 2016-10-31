@@ -10,7 +10,16 @@ class MakersBnb < Sinatra::Base
 
   get '/spaces' do
     @properties = Property.all
-    erb :spaces
+    erb :'spaces/spaces'
+  end
+
+  post '/spaces' do
+    @properties = Property.create(name: params[:name], location: params[:location], description: params[:description], price: params[:price])
+    redirect '/spaces'
+  end
+
+  get '/spaces/new' do
+    erb :'spaces/new'
   end
 
   post '/requests/new' do
@@ -18,7 +27,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/requests' do
-    'Requests'
+    'Request sent to owner!'
   end
 
   # start the server if ruby file executed directly

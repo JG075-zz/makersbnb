@@ -3,10 +3,10 @@
 <ul id="properties">
   <% @properties.each do |property| %>
     <li>
-      <%= property.name %>
-      <%= property.location %>
-      <%= property.description %>
-      <%= property.price %>
+      <%= property.name %><br>
+      Location: <%= property.location %><br>
+      About this listing: <%= property.description %><br>
+      Only £<%= property.price %> a day!<br>
       <form action="/requests/new" method="post">
         <input type="submit" value="Rent">
       </form>
