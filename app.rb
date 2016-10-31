@@ -35,6 +35,10 @@ class MakersBnb < Sinatra::Base
     end
   end
 
+  get '/spaces/new' do
+    erb :'spaces/new'
+  end
+
   post '/users/new' do
     user = User.create(name: params[:name],
                        email: params[:email],
