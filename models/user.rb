@@ -9,8 +9,9 @@ class User
   property :id, Serial
   property :name, String, required: true
   property :email, String, required: true, unique: true
-  property :password_digest, Text, required: true, length: 4..20
+  property :password_digest, Text, required: true
 
+  validates_presence_of :password
   validates_confirmation_of :password_digest, :confirm => :password_confirmation
 
   def password=(password)

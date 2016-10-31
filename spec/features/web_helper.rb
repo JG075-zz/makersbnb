@@ -30,6 +30,6 @@ def wrong_email_sign_up
   fill_in :name, with: "Li"
   fill_in :email, with: "Lil.com"
   fill_in :password, with: "Secret"
-  fill_in :password_confirmation, with: "s3cret"
+  fill_in :password_confirmation, with: "secret"
   click_button "Sign up"
 end

@@ -18,7 +18,7 @@ feature "users can sign up" do
     expect { blank_sign_up }.to change(User, :count).by(0)
     expect(page).to have_content "Name must not be blank"
     expect(page).to have_content "Email must not be blank"
-    expect(page).to have_content "Password digest must be between 4 and 20 characters long"
+    expect(page).to have_content "Password must not be blank"
   end
   scenario "email must be an actual email" do
     expect { wrong_email_sign_up }.to change(User, :count).by(0)
