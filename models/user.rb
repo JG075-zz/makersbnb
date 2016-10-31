@@ -9,7 +9,7 @@ class User
   property :id, Serial
   property :name, String, required: true
   property :email, String, required: true, unique: true
-  property :password_digest, Text
+  property :password_digest, Text, required: true, length: 4..20
 
   validates_confirmation_of :password_digest, :confirm => :password_confirmation
 
@@ -17,5 +17,4 @@ class User
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
-
 end

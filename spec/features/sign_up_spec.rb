@@ -11,8 +11,17 @@ feature "users can sign up" do
     expect(page).to have_content "Email is already taken"
   end
   scenario "passwords need to match" do
-    wrong_sign_up
-    expect { sign_up }.to change(User, :count).by(0)
+    expect { wrong_sign_up }.to change(User, :count).by(0)
+    expect(page).to have_content "Password digest does not match the confirmation"
+  end
+  scenario "cannot leave blank" do
+    expect { blank_sign_up }.to change(User, :count).by(0)
+    expect(page).to have_content "Name must not be blank"
+    expect(page).to have_content "Email must not be blank"
+    expect(page).to have_content "Password digest must be between 4 and 20 characters long"
+  end
+  scenario "email must be an actual email" do
+    expect { wrong_email_sign_up }.to change(User, :count).by(0)
     expect(page).to have_content "Password digest does not match the confirmation"
   end
 end
