@@ -6,7 +6,7 @@ class Property
   property :id, Serial
   property :name, String
   property :location, String
-  property :price, String
+  property :price, Integer
   property :description, Text
 
 end
