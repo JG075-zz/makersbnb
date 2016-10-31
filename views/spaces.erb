@@ -7,9 +7,9 @@
       <%= property.location %>
       <%= property.description %>
       <%= property.price %>
+      <form action="/requests/new" method="post">
+        <input type="submit" value="Rent">
+      </form>
     </li>
   <% end %>
 </ul>
-<form action="/requests/new" method="post">
-  <input type="submit" value="Rent">
-</form>
