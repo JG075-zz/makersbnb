@@ -1,0 +1,15 @@
+<h1>List of Available Spaces</h1>
+<p>Checkout our amazing spaces to rent for unbelivable prices!</p>
+<ul id="properties">
+  <% @properties.each do |property| %>
+    <li>
+      <%= property.name %>
+      <%= property.location %>
+      <%= property.description %>
+      <%= property.price %>
+    </li>
+  <% end %>
+</ul>
+<form action="/requests/new" method="post">
+  <input type="submit" value="Rent">
+</form>
