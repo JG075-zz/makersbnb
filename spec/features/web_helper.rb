@@ -6,3 +6,5 @@ def sign_up
   fill_in :password_confirmation, with: "Secret"
   click_button "Sign up"
 end
+
+#test
