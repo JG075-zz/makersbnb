@@ -11,13 +11,11 @@ class User
   property :email, String, required: true, unique: true
   property :password_digest, Text
 
-validates_confirmation_of :password_digest, :confirm => :password_confirmation
+  validates_confirmation_of :password_digest, :confirm => :password_confirmation
 
-def password=(password)
-  @password = password
-  self.password_digest = BCrypt::Password.create(password)
-end
-
-
+  def password=(password)
+    @password = password
+    self.password_digest = BCrypt::Password.create(password)
+  end
 
 end

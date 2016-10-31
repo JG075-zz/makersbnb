@@ -6,8 +6,13 @@
   </head>
   <body>
     <% if current_user %>
-     <h4>Welcome, <%= current_user.name %></h4>
-     <% end %>
-     <%= yield %> 
+      <h4>Welcome, <%= current_user.name %></h4>
+    <% end %>
+    <% if flash[:errors] %>
+      <div id='notice'>
+        <%= flash[:errors] %>
+      </div>
+    <% end %>
+     <%= yield %>
   </body>
 </html>
