@@ -4,9 +4,9 @@ class Property
   include DataMapper::Resource
 
   property :id, Serial
-  property :name, String
-  property :location, String
-  property :price, Integer
+  property :name, String, required: true
+  property :location, String, required: true
+  property :price, Integer, required: true
   property :description, Text
 
 end

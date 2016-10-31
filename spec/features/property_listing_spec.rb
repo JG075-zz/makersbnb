@@ -24,4 +24,14 @@ feature 'Create listing' do
     expect(page).to have_content 'where sup3r cool people live'
     expect(page).to have_content '£200'
   end
+
+  scenario 'user leaves form blank' do
+    visit '/spaces/new'
+    click_button 'Add Property'
+    expect{click_button 'Add Property'}.not_to change(Property, :count)
+    expect(page).to have_content("Name must not be blank")
+    expect(page).to have_content("Location must not be blank")
+    expect(page).to have_content("Price must not be blank")
+    expect(page).to have_content("Price must be an integer")
+  end
 end
