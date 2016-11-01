@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% if current_user %>
+      <h4>Welcome, <%= current_user.name %></h4>
+      <form action="/sessions" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Log out">
+      </form>
+    <% end %>
+    <% if flash[:errors] %>
+      <div id='errors'>
+        <%= flash[:errors] %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div id='notice'>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+
+     <%= yield %>
+  </body>
+</html>

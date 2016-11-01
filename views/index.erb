@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to MakersBnb</title>
+  </head>
+  <body>
+    <% if current_user.nil? %>
+      <form action="/sessions" method="post">
+        <input type="email" name="email" placeholder="Email" required/>
+        <input type="password" name="password" placeholder="Password" required="true"/>
+        <input type="submit" value="Log in"/>
+      </form>
+      <form action="/users/new">
+        <input type="submit" value="Sign up"/>
+      </form>
+    <% end %>
+  </body>
+</html>
