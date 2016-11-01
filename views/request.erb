@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Confirmation</title>
+  </head>
+  <ul id="properties">
+    <% @bookings.each do |booking| %>
+      <li>
+        <%= booking.property.name %><br>
+        Location: <%= booking.property.location %><br>
+        About this listing: <%= booking.property.description %><br>
+        Price: <%= booking.property.price %> a day<br>
+        booking.availability.status
+        <form action="/requests" method="post">
+          <input type="hidden" name="booking" value="<%= booking %>">
+          <input type="submit" value="Accept">
+        </form>
+      </li>
+    <% end %>
+  </ul>
+</html>
