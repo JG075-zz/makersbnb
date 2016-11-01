@@ -9,4 +9,5 @@ class Property
   property :price, Integer, required: true
   property :description, Text
 
+  belongs_to :user 
 end

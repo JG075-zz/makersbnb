@@ -25,14 +25,14 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/spaces' do
-    @properties = Property.create(name: params[:name],
+    property = Property.create(name: params[:name],
                                   location: params[:location],
                                   description: params[:description],
-                                  price: params[:price])
-    if @properties.save
+                                  price: params[:price], user_id: current_user.id)
+    if property.save
       redirect '/spaces'
     else
-      flash.now[:errors] = @properties.errors.full_messages
+      flash.now[:errors] = property.errors.full_messages
       erb :'spaces/new'
     end
   end

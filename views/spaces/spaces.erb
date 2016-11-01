@@ -7,6 +7,7 @@
       Location: <%= property.location %><br>
       About this listing: <%= property.description %><br>
       Only £<%= property.price %> a day!<br>
+      Contact <%=property.user.email%> for more info.
       <form action="/requests/new" method="post">
         <input type="submit" value="Rent">
       </form>
