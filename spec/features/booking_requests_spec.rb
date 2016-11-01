@@ -1,5 +1,4 @@
 require_relative 'web_helper'
-require 'spec_helper'
 
 feature "booking requests" do
   scenario "users can make a booking" do
