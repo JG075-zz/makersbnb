@@ -92,6 +92,20 @@ class MakersBnb < Sinatra::Base
     erb :all_requests
   end
 
+  post '/accept' do
+    property_id = params[:property]
+    request_id = params[:request]
+    Property.get(property_id).update(:availability => false)
+    Request.get(request_id).destroy!
+    redirect '/requests'
+  end
+
+  post '/decline' do
+    request_id = params[:request]
+    Request.get(request_id).destroy!
+    redirect '/requests'
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
