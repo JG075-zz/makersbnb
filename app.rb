@@ -21,12 +21,12 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/users/new' do
-    erb :sign_up
+    erb :'users/new'
   end
 
   get '/spaces' do
     @properties = Property.all
-    erb :'spaces/spaces'
+    erb :'spaces/index'
   end
 
   post '/spaces' do
@@ -51,12 +51,12 @@ class MakersBnb < Sinatra::Base
                        email: params[:email],
                        password: params[:password],
                        password_confirmation: params[:password_confirmation])
-      if user.save
-        session[:user_id] = user.id
-        redirect '/spaces'
-      else
+    if user.save
+      session[:user_id] = user.id
+      redirect '/spaces'
+    else
       flash.now[:errors] = user.errors.full_messages
-      erb :sign_up
+      erb :'users/new'
     end
   end
 
@@ -78,18 +78,18 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/requests/new' do
-    erb :request
+    erb :'requests/new'
   end
 
   post '/requests/new' do
     property = params[:property]
-    request = Request.create(booker_id: current_user.id, property_id: property)
+    Request.create(booker_id: current_user.id, property_id: property)
     redirect '/requests/new'
   end
 
   get '/requests' do
     @requests = Property.all.requests(booker_id: current_user.id)
-    erb :all_requests
+    erb :'requests/index'
   end
 
   # start the server if ruby file executed directly
