@@ -1,5 +1,4 @@
 require_relative 'web_helper'
-require 'spec_helper'
 
 feature "users can log in and out" do
   scenario "user can log in" do

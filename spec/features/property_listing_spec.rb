@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative 'web_helper'
 
 feature 'View listing' do

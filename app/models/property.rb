@@ -8,6 +8,8 @@ class Property
   property :location, String, required: true
   property :price, Integer, required: true
   property :description, Text
+  property :availability, Boolean, :default => true
 
-  belongs_to :user 
+  belongs_to :user
+  has n, :requests
 end

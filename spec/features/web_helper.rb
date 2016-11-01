@@ -7,6 +7,15 @@ def sign_up
   click_button "Sign up"
 end
 
+def sign_up2
+  visit '/users/new'
+  fill_in :name, with: "James"
+  fill_in :email, with: "James@gmail.com"
+  fill_in :password, with: "Secret"
+  fill_in :password_confirmation, with: "Secret"
+  click_button "Sign up"
+end
+
 def wrong_sign_up
   visit '/users/new'
   fill_in :name, with: "Li"
