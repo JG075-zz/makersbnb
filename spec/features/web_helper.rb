@@ -1,5 +1,5 @@
 def sign_up
-  visit '/'
+  visit '/users/new'
   fill_in :name, with: "Li"
   fill_in :email, with: "Li@gmail.com"
   fill_in :password, with: "Secret"
@@ -8,7 +8,7 @@ def sign_up
 end
 
 def wrong_sign_up
-  visit '/'
+  visit '/users/new'
   fill_in :name, with: "Li"
   fill_in :email, with: "Lil@gmail.com"
   fill_in :password, with: "Secret"
@@ -17,7 +17,7 @@ def wrong_sign_up
 end
 
 def blank_sign_up
-  visit '/'
+  visit '/users/new'
   fill_in :name, with: ""
   fill_in :email, with: ""
   fill_in :password, with: ""
@@ -26,7 +26,7 @@ def blank_sign_up
 end
 
 def wrong_email_sign_up
-  visit '/'
+  visit '/users/new'
   fill_in :name, with: "Li"
   fill_in :email, with: "Lil.com"
   fill_in :password, with: "Secret"

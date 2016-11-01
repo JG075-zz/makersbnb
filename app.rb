@@ -5,6 +5,7 @@ require 'sinatra/flash'
 
 
 class MakersBnb < Sinatra::Base
+  use Rack::MethodOverride
   enable :sessions
   set :session_secret, 'super secret'
   register Sinatra::Flash
@@ -19,20 +20,24 @@ class MakersBnb < Sinatra::Base
     erb :index
   end
 
+  get '/users/new' do
+    erb :sign_up
+  end
+
   get '/spaces' do
     @properties = Property.all
     erb :'spaces/spaces'
   end
 
   post '/spaces' do
-    @properties = Property.create(name: params[:name],
+    property = Property.create(name: params[:name],
                                   location: params[:location],
                                   description: params[:description],
-                                  price: params[:price])
-    if @properties.save
+                                  price: params[:price], user_id: current_user.id)
+    if property.save
       redirect '/spaces'
     else
-      flash.now[:errors] = @properties.errors.full_messages
+      flash.now[:errors] = property.errors.full_messages
       erb :'spaces/new'
     end
   end
@@ -51,8 +56,25 @@ class MakersBnb < Sinatra::Base
         redirect '/spaces'
       else
       flash.now[:errors] = user.errors.full_messages
+      erb :sign_up
+    end
+  end
+
+  post '/sessions' do
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect to '/spaces'
+    else
+      flash.now[:errors] = "The email or password is incorrect"
       erb :index
     end
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    flash.keep[:notice] = "You have successfully logged out"
+    redirect to '/'
   end
 
   post '/requests/new' do
