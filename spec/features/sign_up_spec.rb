@@ -7,6 +7,7 @@ feature "users can sign up" do
   end
   scenario "cannot sign up with same email" do
     sign_up
+    click_button "Log out"
     expect { sign_up }.to_not change(User, :count)
     expect(page).to have_content "Email is already taken"
   end
