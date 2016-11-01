@@ -83,12 +83,12 @@ class MakersBnb < Sinatra::Base
 
   post '/requests/new' do
     property = params[:property]
-    request = Request.create(property_id: property)
+    request = Request.create(booker_id: current_user.id, property_id: property)
     redirect '/requests/new'
   end
 
   get '/requests' do
-    @requests = Property.all.requests
+    @requests = Property.all.requests(booker_id: current_user.id)
     erb :all_requests
   end
 
