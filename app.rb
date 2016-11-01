@@ -78,11 +78,18 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/requests/new' do
-    erb :new_request
+    erb :request
+  end
+
+  post '/requests/new' do
+    property = params[:property]
+    request = Request.create(property_id: property)
+    redirect '/requests/new'
   end
 
   get '/requests' do
-    'Requests'
+    @requests = Property.all.requests
+    erb :all_requests
   end
 
   # start the server if ruby file executed directly

@@ -11,4 +11,5 @@ class Property
   property :availability, Boolean, :default => true
 
   belongs_to :user
+  has n, :requests
 end
