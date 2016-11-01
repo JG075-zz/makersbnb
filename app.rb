@@ -77,8 +77,8 @@ class MakersBnb < Sinatra::Base
     redirect to '/'
   end
 
-  post '/requests/new' do
-    redirect '/requests'
+  get '/requests/new' do
+    erb :new_request
   end
 
   get '/requests' do

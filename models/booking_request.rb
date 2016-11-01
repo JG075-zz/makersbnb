@@ -4,6 +4,7 @@ class BookingRequest
   include DataMapper::Resource
 
   property :id, Serial
+  property :booker_id, Integer
 
   belongs_to :property
 end
