@@ -3,27 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+      header {
+        background: rgb(183, 38, 15);
+        color: #fff;
+        font-size: 22px;
+        padding-left: 40px;
+        padding-top: 20px;
+      }
+      .container {
+        padding: 40px;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
   <body>
-    <% if current_user %>
-      <h4>Welcome, <%= current_user.name %></h4>
-      <form action="/sessions" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Log out">
-      </form>
-    <% end %>
-    <% if flash[:errors] %>
-      <div id='errors'>
-        <%= flash[:errors] %>
-      </div>
-    <% end %>
-    <% if flash[:notice] %>
-      <div id='notice'>
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-
-
-     <%= yield %>
+    <header>
+      <% if current_user %>
+        <h4>Welcome, <%= current_user.name %></h4>
+        <form action="/sessions" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Log out">
+        </form>
+      <% end %>
+      <% if flash[:errors] %>
+        <div id='errors'>
+          <%= flash[:errors] %>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div id='notice'>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
