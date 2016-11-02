@@ -12,7 +12,7 @@ feature "creating a property with available dates" do
     fill_in('start_date', with: "01-11-2016")
     fill_in('end_date', with: "03-11-2016")
     click_button 'Add Property'
-    expect(page).to have_content "Available from 2016-11-01 to 2016-11-03"
+    expect(page).to have_content "Available from 01 November 2016 until 03 November 2016"
   end
 
   scenario "users must enter a valid date" do
