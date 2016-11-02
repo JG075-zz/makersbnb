@@ -3,7 +3,7 @@ class MakersBnb < Sinatra::Base
     property = params[:property]
     if Property.get(property).availability == true
       Request.create(booker_id: current_user.id, property_id: property)
-      redirect '/requests/new'
+      erb :'/requests/new'
     else
       @properties = Property.all
       flash.now[:errors] = "This place has already been booked"
