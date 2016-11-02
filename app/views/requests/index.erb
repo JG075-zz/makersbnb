@@ -1,8 +1,20 @@
 <h1>All requests: </h1>
-<ul id="requests">
-  <% @requests.each do |request| %>
+<h2>Requests I've Made: </h2>
+<ul id="made-requests">
+  <% @made_requests.each do |request| %>
   <li>
     You have requested booking <%= request.property.name %><br>
+    Location: <%= request.property.location %><br>
+    About this listing: <%= request.property.description %><br>
+    £<%= request.property.price %> a day!<br>
+  </li>
+  <% end %>
+</ul>
+<h2>Requests I've Received: </h2>
+<ul id="received-requests">
+  <% @received_requests.each do |request| %>
+  <li>
+    You have received booking request for <%= request.property.name %><br>
     Location: <%= request.property.location %><br>
     About this listing: <%= request.property.description %><br>
     £<%= request.property.price %> a day!<br>
