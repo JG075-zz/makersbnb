@@ -18,6 +18,10 @@ class MakersBnb < Sinatra::Base
     erb :'requests/index'
   end
 
+  get '/requests/pick-date' do
+    erb :'requests/pick_date'
+  end
+
   # RESTFUL URLS?
 
   post '/accept' do

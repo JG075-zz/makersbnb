@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <!-- Bootstrap 3 CSS file -->
+    <link href="/datetimepicker/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap Datetimepicker CSS file -->
+    <link href="/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
     <style>
       body {
         margin: 0;
@@ -19,8 +24,6 @@
         padding: 40px;
       }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -45,9 +48,24 @@
     <div class="container">
       <%= yield %>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap 3 -->
+    <script src="/datetimepicker/dist/js/bootstrap.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="/datetimepicker/moment.js"></script>
+
+    <!-- Bootstrap Datetimepicker -->
+    <script src="/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <!-- initialize the pickers -->
+    <script type="text/javascript">
+      $(function () {
+        $('#start').datetimepicker();
+        $('#stop').datetimepicker();
+      });
+    </script>
+
   </body>
 </html>
