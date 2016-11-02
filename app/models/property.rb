@@ -12,4 +12,5 @@ class Property
 
   belongs_to :user
   has n, :requests
+  has n, :days, through: Resource
 end
