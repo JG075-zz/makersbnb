@@ -12,7 +12,9 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/requests' do
-    @requests = Property.all.requests(booker_id: current_user.id)
+    @made_requests = Property.all.requests(booker_id: current_user.id)
+    user_properties = Property.all(user_id: current_user.id)
+    @received_requests = user_properties.all.requests
     erb :'requests/index'
   end
 
