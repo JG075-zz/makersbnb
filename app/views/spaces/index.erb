@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>List of properties</title>
-  </head>
-  <body>
-    <form action="/spaces/new" method="get">
-      <input type="submit" value="Register new space">
-    </form>
-    <h1>List of Available Spaces</h1>
-    <p>Checkout our amazing spaces to rent for unbelivable prices!</p>
-    <ul id="properties">
-      <% @properties.each do |property| %>
-        <li>
-          <%= property.name %><br>
-          Location: <%= property.location %><br>
-          About this listing: <%= property.description %><br>
-          Only £<%= property.price %> a day!<br>
-          Contact <%=property.user.email%> for more info.
-          <form action="/requests/new" method="post">
-            <input type="submit" value="Rent">
-            <input type="hidden" name="property" value="<%=property.id%>">
-          </form>
-        </li>
-      <% end %>
-    </ul>
-  </body>
-</html>
+<form action="/spaces/new" method="get">
+  <input type="submit" value="Register new space">
+</form>
+<h1>List of Available Spaces</h1>
+<p>Checkout our amazing spaces to rent for unbelivable prices!</p>
+<ul id="properties">
+  <% @properties.each do |property| %>
+    <li>
+      <%= property.name %><br>
+      Location: <%= property.location %><br>
+      About this listing: <%= property.description %><br>
+      Only £<%= property.price %> a day!<br>
+      Contact <%=property.user.email%> for more info.
+      <form action="/requests/new" method="post">
+        <input type="submit" value="Rent">
+        <input type="hidden" name="property" value="<%=property.id%>">
+      </form>
+    </li>
+  <% end %>
+</ul>

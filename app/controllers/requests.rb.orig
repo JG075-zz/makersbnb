@@ -1,6 +1,7 @@
 class MakersBnb < Sinatra::Base
   post '/requests/new' do
     property = params[:property]
+<<<<<<< HEAD
     if Property.get(property).availability == true
       Request.create(booker_id: current_user.id, property_id: property)
       redirect '/requests/new'
@@ -9,6 +10,10 @@ class MakersBnb < Sinatra::Base
       flash.now[:errors] = "This place has already been booked"
       erb :'/spaces/index'
     end
+=======
+    Request.create(booker_id: current_user.id, property_id: property)
+    erb :'requests/new'
+>>>>>>> master
   end
 
   get '/requests' do
