@@ -3,7 +3,7 @@ require_relative 'web_helper'
 feature "booking requests as a customer" do
   before :each do
     sign_up
-    Property.create(name: "super cool house", location: "47 cool lane", description: "a very cool house", price: 100, user_id: 1)
+    new_space
     visit '/spaces'
     click_button('Rent')
   end
@@ -36,7 +36,7 @@ end
 feature "booking requests as a renter" do
   before :each do
     sign_up
-    Property.create(name: "super cool house", location: "47 cool lane", description: "a very cool house", price: 100, user_id: 1)
+    new_space
     visit '/spaces'
     click_button("Log out")
   end
@@ -51,6 +51,6 @@ feature "booking requests as a renter" do
     click_button "Log in"
     visit '/requests'
     expect(page).to have_content 'Requests I\'ve Received'
-    expect(page).to have_content 'You have received booking request for super cool house'
+    expect(page).to have_content 'You have received booking request for sup3r cool house'
   end
 end
