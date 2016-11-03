@@ -1,1 +1,5 @@
+# exclude everything in this folder
 app/public/uploads/*
+
+# exception to the rule
+!app/public/uploads/.gitkeep
