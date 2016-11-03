@@ -1,0 +1,13 @@
+<h1> List of your spaces </h1>
+
+<ul id="properties">
+  <% @user_properties.each do |property| %>
+    <li>
+      <%= property.name %><br>
+      Location: <%= property.location %><br>
+      About this listing: <%= property.description %><br>
+      Only £<%= property.price %> a day!<br>
+      Available from <%= property.days.first.date.strftime("%d %B %Y") %> until <%= property.days.last.date.strftime("%d %B %Y")%><br>
+    </li>
+  <% end %>
+</ul>
