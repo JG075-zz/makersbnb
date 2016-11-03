@@ -1,14 +1,10 @@
 class MakersBnb < Sinatra::Base
   post '/requests/new' do
     property = params[:property]
-    if Property.get(property).availability == true
-      Request.create(booker_id: current_user.id, property_id: property)
-      erb :'/requests/new'
-    else
-      @properties = Property.all
-      flash.now[:errors] = "This place has already been booked"
-      erb :'/spaces/index'
-    end
+    start_rent = params[:start_rent]
+    end_rent = params[:end_rent]
+    Request.create(booker_id: current_user.id, property_id: property, start_date: start_rent, end_date: end_rent)
+    erb :'/requests/new'
   end
 
   get '/requests' do
@@ -17,17 +13,27 @@ class MakersBnb < Sinatra::Base
     @received_requests = user_properties.all.requests
     erb :'requests/index'
   end
-
-  get '/requests/pick-date' do
-    erb :'requests/pick_date'
-  end
-
-  # RESTFUL URLS?
-
+  
   post '/accept' do
     property_id = params[:property]
     request_id = params[:request]
-    Property.get(property_id).update(:availability => false)
+    rent = Request.get(request_id)
+    filter_dates = []
+    days = []
+    (Date.parse(rent.start_date.to_s)..Date.parse(rent.end_date.to_s)).map(&:to_s).each do |day|
+      days << Day.first_or_create(date: day)
+    end
+    days.each do |y|
+      filter_dates << y.date
+    end
+    filter_dates.each do |day|
+      remove_day = Property.get(property_id).days(:conditions => {:date => day})
+      remove_day.destroy!
+      Property.get(property_id).days(:conditions => {:date => day}).each do |x|
+        Day.get(x.id).destroy!
+      end
+
+    end
     Request.get(request_id).destroy!
     redirect '/requests'
   end
