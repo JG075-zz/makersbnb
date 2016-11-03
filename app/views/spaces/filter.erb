@@ -1,6 +1,3 @@
-<form action="/spaces/new" method="get">
-  <input type="submit" value="Register new space">
-</form>
 <h1>List of Available Spaces</h1>
 <p>Checkout our amazing spaces to rent for unbelivable prices!</p>
   <form action="/spaces/filter">
@@ -10,16 +7,22 @@
     <input type='date' name='end'/>
     <input type='submit' value='Filter'/>
   </form>
+
 <ul id="properties">
   <% @properties.each do |property| %>
     <li>
       <%= property.name %><br>
-      <img class="thumbnail" src="<%= property.image_path%>">
       Location: <%= property.location %><br>
       About this listing: <%= property.description %><br>
       Only £<%= property.price %> a day!<br>
       Available from <%= property.days.first.date.strftime("%d %B %Y") %> until <%= property.days.last.date.strftime("%d %B %Y")%><br>
       Contact <%=property.user.email%> for more info.
+      <form action="/requests/new" method="post">
+        <input type="submit" value="Rent">
+        <input type="hidden" name="start_rent" value="<%=@start_rent%>">
+        <input type="hidden" name="end_rent" value="<%=@end_rent%>">
+        <input type="hidden" name="property" value="<%=property.id%>">
+      </form>
     </li>
   <% end %>
 </ul>

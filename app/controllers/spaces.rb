@@ -1,4 +1,5 @@
 require 'date'
+
 class MakersBnb < Sinatra::Base
   get '/spaces' do
     @properties = Property.all
@@ -40,5 +41,18 @@ class MakersBnb < Sinatra::Base
 
   get '/spaces/new' do
     erb :'spaces/new'
+  end
+
+  get '/spaces/filter' do
+    if params[:start] > params[:end]
+      flash.now[:errors] = "Please enter valid dates."
+      @properties = Property.all
+      erb :'spaces/index'
+    else
+      @start_rent = params[:start]
+      @end_rent = params[:end]
+      filter_date(params[:start], params[:end])
+      erb :'spaces/filter'
+    end
   end
 end
