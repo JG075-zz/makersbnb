@@ -5,6 +5,8 @@ class Request
 
   property :id, Serial
   property :booker_id, Integer
+  property :start_date, Date
+  property :end_date, Date
 
   belongs_to :property
 end

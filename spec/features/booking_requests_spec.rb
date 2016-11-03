@@ -5,6 +5,7 @@ feature "booking requests as a customer" do
     sign_up
     new_space
     visit '/spaces'
+    filter
     click_button('Rent')
   end
 
@@ -44,6 +45,7 @@ feature "booking requests as a renter" do
   scenario "can view requests I have received" do
     sign_up2
     visit '/spaces'
+    filter
     click_button('Rent')
     click_button("Log out")
     fill_in :email, with: "Li@gmail.com"
