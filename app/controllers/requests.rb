@@ -21,7 +21,7 @@ class MakersBnb < Sinatra::Base
     filter_dates = []
     days = []
     (Date.parse(rent.start_date.to_s)..Date.parse(rent.end_date.to_s)).map(&:to_s).each do |day|
-      days << Day.create(date: day)
+      days << Day.first_or_create(date: day)
     end
     days.each do |y|
       filter_dates << y.date
@@ -29,6 +29,10 @@ class MakersBnb < Sinatra::Base
     filter_dates.each do |day|
       remove_day = Property.get(property_id).days(:conditions => {:date => day})
       remove_day.destroy!
+      Property.get(property_id).days(:conditions => {:date => day}).each do |x|
+        Day.get(x.id).destroy!
+      end
+
     end
     Request.get(request_id).destroy!
     redirect '/requests'

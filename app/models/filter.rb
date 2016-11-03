@@ -3,7 +3,7 @@ def filter_date(start, finish)
   filter_dates = []
   days = []
   (Date.parse(start)..Date.parse(finish)).map(&:to_s).each do |day|
-    days << Day.create(date: day)
+    days << Day.first_or_create(date: day)
   end
   days.each do |y|
     filter_dates << y.date
