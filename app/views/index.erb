@@ -1,7 +1,12 @@
+<div class="row">
+  <div class="col-md-2 col-centered" >
+    <img class="main-logo" src="/images/makersbnb.png">
+  </div>
+</div>
+
 <% if current_user.nil? %>
 <div class="row login-form">
-    <div class="col-md-3 col-md-offset-5">
-      <h1>Login to MakersBnB</h1>
+    <div class="col-md-3 col-centered">
       <form class="form-horizontal" action="/sessions" method="post">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
