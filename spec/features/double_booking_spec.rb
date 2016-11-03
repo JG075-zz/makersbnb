@@ -5,10 +5,12 @@ feature "prevents double-booking" do
     sign_up
     new_space
     visit '/spaces'
+    filter
     click_button('Rent')
     visit '/requests'
     click_button("Accept")
     visit '/spaces'
+    filter
     click_button('Rent')
     expect(page).to have_content "This place has already been booked"
   end

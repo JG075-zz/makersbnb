@@ -19,6 +19,7 @@ feature "creating a property with available dates" do
     click_button 'Add Property'
     expect(page).to have_content "Please enter valid dates."
   end
+
   scenario "can filter spaces by dates" do
     add_property
     visit '/spaces'
@@ -26,5 +27,16 @@ feature "creating a property with available dates" do
     fill_in('end', with: '03-11-2016')
     click_button 'Filter'
     expect(page).to have_content "sup3r cool house"
+  end
+
+  scenario "can request to rent a space from chosen dates" do
+    add_property
+    visit '/spaces'
+    fill_in('start', with: '01-11-2016')
+    fill_in('end', with: '03-11-2016')
+    click_button 'Filter'
+    click_button 'Rent'
+    visit '/requests'
+    expect(page).to have_content "User has requested to book this property from 01 November 2016 to 03 November 2016"
   end
 end

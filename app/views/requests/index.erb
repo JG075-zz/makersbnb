@@ -18,6 +18,7 @@
     Location: <%= request.property.location %><br>
     About this listing: <%= request.property.description %><br>
     £<%= request.property.price %> a day!<br>
+    User has requested to book this property from <%=request.start_date.strftime("%d %B %Y")%> to <%=request.end_date.strftime("%d %B %Y")%>
     <form action="/accept" method="post" >
       <input type="hidden" name="property" value="<%=request.property.id%>">
       <input type="hidden" name="request" value="<%=request.id%>">

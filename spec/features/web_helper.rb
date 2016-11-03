@@ -65,3 +65,20 @@ def add_property
   fill_in('end_date', with: "03-11-2016")
   click_button 'Add Property'
 end
+
+def add_property2
+  visit '/spaces/new'
+  fill_in('name', with: 'treehouse')
+  fill_in('location', with: 'tree')
+  fill_in('description', with: 'many trees')
+  fill_in('price', with: '100')
+  fill_in('start_date', with: "10-11-2016")
+  fill_in('end_date', with: "15-11-2016")
+  click_button 'Add Property'
+end
+
+def filter
+  fill_in('start', with: '01-11-2016')
+  fill_in('end', with: '03-11-2016')
+  click_button 'Filter'
+end

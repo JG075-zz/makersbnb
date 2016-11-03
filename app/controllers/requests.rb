@@ -1,8 +1,10 @@
 class MakersBnb < Sinatra::Base
   post '/requests/new' do
     property = params[:property]
+    start_rent = params[:start_rent]
+    end_rent = params[:end_rent]
     if Property.get(property).availability == true
-      Request.create(booker_id: current_user.id, property_id: property)
+      Request.create(booker_id: current_user.id, property_id: property, start_date: start_rent, end_date: end_rent)
       erb :'/requests/new'
     else
       @properties = Property.all
