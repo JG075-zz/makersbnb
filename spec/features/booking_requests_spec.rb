@@ -10,7 +10,7 @@ feature "booking requests as a customer" do
   end
 
   scenario "users can make a booking" do
-    expect(page).to have_content "Thank you for your request"
+    expect(page).to have_content "Your request has been sent to Li"
   end
 
   scenario "users can view their own requested bookings" do
