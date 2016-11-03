@@ -1,9 +1,9 @@
 class MakersBnb < Sinatra::Base
   post '/requests/new' do
-    property = params[:property]
+    @property = params[:property]
     start_rent = params[:start_rent]
     end_rent = params[:end_rent]
-    Request.create(booker_id: current_user.id, property_id: property, start_date: start_rent, end_date: end_rent)
+    Request.create(booker_id: current_user.id, property_id: @property, start_date: start_rent, end_date: end_rent)
     erb :'/requests/new'
   end
 
@@ -13,7 +13,7 @@ class MakersBnb < Sinatra::Base
     @received_requests = user_properties.all.requests
     erb :'requests/index'
   end
-  
+
   post '/accept' do
     property_id = params[:property]
     request_id = params[:request]
