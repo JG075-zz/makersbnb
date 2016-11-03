@@ -78,7 +78,15 @@ def add_property2
 end
 
 def filter
+  visit '/spaces'
   fill_in('start', with: '01-11-2016')
   fill_in('end', with: '03-11-2016')
+  click_button 'Filter'
+end
+
+def filter_some
+  visit '/spaces'
+  fill_in('start', with: '01-11-2016')
+  fill_in('end', with: '02-11-2016')
   click_button 'Filter'
 end

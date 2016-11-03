@@ -22,19 +22,13 @@ feature "creating a property with available dates" do
 
   scenario "can filter spaces by dates" do
     add_property
-    visit '/spaces'
-    fill_in('start', with: '01-11-2016')
-    fill_in('end', with: '03-11-2016')
-    click_button 'Filter'
+    filter
     expect(page).to have_content "sup3r cool house"
   end
 
   scenario "can request to rent a space from chosen dates" do
     add_property
-    visit '/spaces'
-    fill_in('start', with: '01-11-2016')
-    fill_in('end', with: '03-11-2016')
-    click_button 'Filter'
+    filter
     click_button 'Rent'
     visit '/requests'
     expect(page).to have_content "Li has requested to book this property from 01 November 2016 to 03 November 2016"
@@ -42,17 +36,11 @@ feature "creating a property with available dates" do
 
   scenario "can remove rented properties" do
     add_property
-    visit '/spaces'
-    fill_in('start', with: '01-11-2016')
-    fill_in('end', with: '02-11-2016')
-    click_button 'Filter'
+    filter_some
     click_button 'Rent'
     visit '/requests'
     click_button 'Accept'
-    visit '/spaces'
-    fill_in('start', with: '01-11-2016')
-    fill_in('end', with: '02-11-2016')
-    click_button "Filter"
+    filter_some
     expect(page).not_to have_content "sup3r cool house"
     visit '/spaces'
     fill_in('start', with: '03-11-2016')

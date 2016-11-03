@@ -13,13 +13,7 @@ class MakersBnb < Sinatra::Base
     @received_requests = user_properties.all.requests
     erb :'requests/index'
   end
-
-  get '/requests/pick-date' do
-    erb :'requests/pick_date'
-  end
-
-  # RESTFUL URLS?
-
+  
   post '/accept' do
     property_id = params[:property]
     request_id = params[:request]
