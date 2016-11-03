@@ -43,6 +43,11 @@ class MakersBnb < Sinatra::Base
     erb :'spaces/new'
   end
 
+  get '/spaces/mylistings' do
+    @user_properties = Property.all(user_id: current_user.id)
+    erb :'spaces/my_listings'
+  end
+
   get '/spaces/filter' do
     if params[:start] > params[:end]
       flash.now[:errors] = "Please enter valid dates."

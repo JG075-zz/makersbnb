@@ -3,11 +3,13 @@
 <ul id="made-requests">
   <% @made_requests.each do |request| %>
   <li>
-    You have requested booking <%= request.property.name %><br>
+    You have requested to book <%= request.property.name %> from <%= User.get(request.property.user_id).name%><br>
+    Check-in date: <%=request.start_date.strftime("%d %B %Y")%><br>
+    Check-out date: <%=request.end_date.strftime("%d %B %Y")%><br>
     Location: <%= request.property.location %><br>
     About this listing: <%= request.property.description %><br>
     £<%= request.property.price %> a day!<br>
-  </li>
+    </li>
   <% end %>
 </ul>
 <h2>Requests I've Received: </h2>
@@ -18,7 +20,9 @@
     Location: <%= request.property.location %><br>
     About this listing: <%= request.property.description %><br>
     £<%= request.property.price %> a day!<br>
-    <%= User.get(request.booker_id).name%> has requested to book this property from <%=request.start_date.strftime("%d %B %Y")%> to <%=request.end_date.strftime("%d %B %Y")%>
+    <%= User.get(request.booker_id).name%> has requested to book this property<br>
+    Check-in date: <%=request.start_date.strftime("%d %B %Y")%><br>
+    Check-out date: <%=request.end_date.strftime("%d %B %Y")%>
     <form action="/accept" method="post" >
       <input type="hidden" name="property" value="<%=request.property.id%>">
       <input type="hidden" name="request" value="<%=request.id%>">

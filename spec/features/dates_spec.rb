@@ -31,7 +31,7 @@ feature "creating a property with available dates" do
     filter
     click_button 'Rent'
     visit '/requests'
-    expect(page).to have_content "Li has requested to book this property from 01 November 2016 to 03 November 2016"
+    expect(page).to have_content "Li has requested to book this property Check-in date: 01 November 2016 Check-out date: 03 November 2016"
   end
 
   scenario "can remove rented properties" do
