@@ -31,4 +31,24 @@ class MakersBnb < Sinatra::Base
   get '/spaces/new' do
     erb :'spaces/new'
   end
+
+  get '/spaces/filter' do
+    @properties = []
+    filter_dates = []
+    (Date.parse(params[:start])..Date.parse(params[:end])).map(&:to_s).each do |day|
+      Day.all(:conditions => {:date => day}).each do |y|
+        filter_dates << y.date
+      end
+    end
+    Property.all.each do |property|
+      available_days = []
+      property.days.each do |x|
+        available_days << x.date
+      end
+      if (available_days & filter_dates) == filter_dates
+        @properties << property
+      end
+    end
+    erb :'spaces/filter'
+  end
 end
