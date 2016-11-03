@@ -3,14 +3,8 @@ class MakersBnb < Sinatra::Base
     property = params[:property]
     start_rent = params[:start_rent]
     end_rent = params[:end_rent]
-    if Property.get(property).availability == true
-      Request.create(booker_id: current_user.id, property_id: property, start_date: start_rent, end_date: end_rent)
-      erb :'/requests/new'
-    else
-      @properties = Property.all
-      flash.now[:errors] = "This place has already been booked"
-      erb :'/spaces/index'
-    end
+    Request.create(booker_id: current_user.id, property_id: property, start_date: start_rent, end_date: end_rent)
+    erb :'/requests/new'
   end
 
   get '/requests' do
@@ -42,7 +36,6 @@ class MakersBnb < Sinatra::Base
       remove_day = Property.get(property_id).days(:conditions => {:date => day})
       remove_day.destroy!
     end
-    # Property.get(property_id).update(:availability => false)
     Request.get(request_id).destroy!
     redirect '/requests'
   end
