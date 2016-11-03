@@ -29,7 +29,20 @@ class MakersBnb < Sinatra::Base
   post '/accept' do
     property_id = params[:property]
     request_id = params[:request]
-    Property.get(property_id).update(:availability => false)
+    rent = Request.get(request_id)
+    filter_dates = []
+    days = []
+    (Date.parse(rent.start_date.to_s)..Date.parse(rent.end_date.to_s)).map(&:to_s).each do |day|
+      days << Day.create(date: day)
+    end
+    days.each do |y|
+      filter_dates << y.date
+    end
+    filter_dates.each do |day|
+      remove_day = Property.get(property_id).days(:conditions => {:date => day})
+      remove_day.destroy!
+    end
+    # Property.get(property_id).update(:availability => false)
     Request.get(request_id).destroy!
     redirect '/requests'
   end

@@ -1,4 +1,5 @@
 require 'date'
+
 class MakersBnb < Sinatra::Base
   get '/spaces' do
     @properties = Property.all
@@ -33,26 +34,15 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/spaces/filter' do
-    @start_rent = params[:start]
-    @end_rent = params[:end]
-    @properties = []
-    filter_dates = []
-    days = []
-    (Date.parse(params[:start])..Date.parse(params[:end])).map(&:to_s).each do |day|
-      days << Day.create(date: day)
+    if params[:start] > params[:end]
+      flash.now[:errors] = "Please enter valid dates."
+      @properties = Property.all
+      erb :'spaces/index'
+    else
+      @start_rent = params[:start]
+      @end_rent = params[:end]
+      filter_date(params[:start], params[:end])
+      erb :'spaces/filter'
     end
-    days.each do |y|
-      filter_dates << y.date
-    end
-    Property.all.each do |property|
-      available_days = []
-      property.days.each do |x|
-        available_days << x.date
-      end
-      if (available_days & filter_dates) == filter_dates
-        @properties << property
-      end
-    end
-    erb :'spaces/filter'
   end
 end
