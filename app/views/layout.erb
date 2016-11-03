@@ -24,16 +24,46 @@
         padding: 40px;
       }
       .login-form {
-        margin-top: 100px;
+        margin-top: 60px;
       }
       .login-form h1 {
         margin-bottom: 50px;
       }
+      .col-centered{
+        float: none;
+        margin: 0 auto;
+      }
+      .main-logo {
+        width:60%;
+        margin-top: 100px;
+      }
+      .login-form .col-md-4 {
+        margin-right: 640px;
+      }
+      .login-form .btn {
+        color: #ffffff;
+        background-color: #ff7977;
+        border-color: #e97b79;
+        margin-left: 20px;
+        padding: 10px 40px;
+      }
+      .login-form a {
+        color: #2DB25B;
+        text-decoration: underline;
+        margin-left: 12px
+      }
+      .login-form .col-sm-offset-6 {
+        padding-top: 5px;
+      }
+      .logo .col-md-4 {
+        text-align: center;
+      }
+
     </style>
   </head>
   <body>
+    <% if current_user %>
     <div class="row header">
-        <% if current_user %>
           <div class="col-md-1">
             <h4>Welcome, <%= current_user.name %></h4>
           </div>
