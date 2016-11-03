@@ -4,6 +4,7 @@ require 'sinatra/base'
 require_relative 'models/data_mapper_setup'
 require 'sinatra/flash'
 require 'time'
+require 'haml'
 
 require_relative 'server'
 require_relative 'controllers/requests'

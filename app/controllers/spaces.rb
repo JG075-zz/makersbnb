@@ -6,6 +6,16 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/spaces' do
+    if params[:file] != nil
+      @filename = params[:file][:filename]
+      file = params[:file][:tempfile]
+
+      File.open("app/public/uploads/#{@filename}", 'wb') do |f|
+        f.write(file.read)
+      end
+      @image_path = "/uploads/#{@filename}"
+    end
+
     if params[:start_date] > params[:end_date]
       flash.now[:errors] = "Please enter valid dates."
       erb :'spaces/new'
@@ -13,7 +23,7 @@ class MakersBnb < Sinatra::Base
       property = Property.create(name: params[:name],
       location: params[:location],
       description: params[:description],
-      price: params[:price], user_id: current_user.id)
+      price: params[:price], user_id: current_user.id, image_path: @image_path)
 
       if property.save
         (Date.parse(params[:start_date])..Date.parse(params[:end_date])).map(&:to_s).each do |day|

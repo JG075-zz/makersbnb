@@ -9,6 +9,7 @@ class Property
   property :price, Integer, required: true
   property :description, Text
   property :availability, Boolean, :default => true
+  property :image_path, Text
 
   belongs_to :user
   has n, :requests

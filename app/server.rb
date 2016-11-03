@@ -14,6 +14,21 @@ class MakersBnb < Sinatra::Base
     erb :index
   end
 
+  get "/upload" do
+    erb :upload_image
+  end
+
+  post "/upload" do
+    @filename = params[:file][:filename]
+    file = params[:file][:tempfile]
+
+    File.open("app/public/uploads/#{@filename}", 'wb') do |f|
+      f.write(file.read)
+    end
+
+  end
+
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

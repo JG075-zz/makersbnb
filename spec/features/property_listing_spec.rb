@@ -33,4 +33,20 @@ feature 'Create listing' do
     expect(page).to have_content("Price must not be blank")
     expect(page).to have_content("Price must be an integer")
   end
+  scenario 'user can upload image' do
+    sign_up
+    visit '/spaces/new'
+    fill_in('name', with: 'sup3r cool house')
+    fill_in('location', with: 'sup3r village')
+    fill_in('description', with: 'where sup3r cool people live')
+    fill_in('price', with: '200')
+    fill_in('start_date', with: "01-11-2016")
+    fill_in('end_date', with: "03-11-2016")
+    attach_file("file", "spec/fixtures/test.jpg")
+    click_button 'Add Property'
+    visit '/spaces'
+    expect(page.find(".thumbnail")["src"]).to have_content 'test.jpg'
+  end
+
+
 end

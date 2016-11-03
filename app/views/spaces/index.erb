@@ -7,6 +7,7 @@
   <% @properties.each do |property| %>
     <li>
       <%= property.name %><br>
+      <img class="thumbnail" src="<%= property.image_path%>">
       Location: <%= property.location %><br>
       About this listing: <%= property.description %><br>
       Only £<%= property.price %> a day!<br>
