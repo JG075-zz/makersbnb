@@ -1,5 +1,7 @@
 ENV['RACK_ENV'] ||= 'development'
 
+require 'dotenv'
+Dotenv.load
 require 'sinatra/base'
 require_relative 'models/data_mapper_setup'
 require 'sinatra/flash'
