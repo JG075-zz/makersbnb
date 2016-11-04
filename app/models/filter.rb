@@ -1,4 +1,4 @@
-class Dates
+class Filter_Dates
   attr_reader :start, :finish, :filter_dates
   attr_accessor :properties, :days
 
@@ -19,6 +19,7 @@ class Dates
     @days.each do |y|
       @filter_dates << y.date
     end
+    @filter_dates
   end
 
   def check_for_availability(start, finish)
