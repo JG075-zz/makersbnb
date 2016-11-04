@@ -1,37 +1,44 @@
-<h1>All requests: </h1>
-<h2>Requests I've Made: </h2>
-<ul id="made-requests">
-  <% @made_requests.each do |request| %>
-  <li>
-    You have requested to book <%= request.property.name %> from <%= User.get(request.property.user_id).name%><br>
-    Check-in date: <%=request.start_date.strftime("%d %B %Y")%><br>
-    Check-out date: <%=request.end_date.strftime("%d %B %Y")%><br>
-    Location: <%= request.property.location %><br>
-    About this listing: <%= request.property.description %><br>
-    £<%= request.property.price %> a day!<br>
-    </li>
-  <% end %>
-</ul>
-<h2>Requests I've Received: </h2>
-<ul id="received-requests">
-  <% @received_requests.each do |request| %>
-  <li>
-    You have received booking request for <%= request.property.name %><br>
-    Location: <%= request.property.location %><br>
-    About this listing: <%= request.property.description %><br>
-    £<%= request.property.price %> a day!<br>
-    <%= User.get(request.booker_id).name%> has requested to book this property<br>
-    Check-in date: <%=request.start_date.strftime("%d %B %Y")%><br>
-    Check-out date: <%=request.end_date.strftime("%d %B %Y")%>
-    <form action="/accept" method="post" >
-      <input type="hidden" name="property" value="<%=request.property.id%>">
-      <input type="hidden" name="request" value="<%=request.id%>">
-      <input type="submit" value="Accept">
-    </form>
-    <form action="/decline" method="post" >
-      <input type="hidden" name="request" value="<%=request.id%>">
-      <input type="submit" value="Decline">
-    </form>
-  </li>
-  <% end %>
-</ul>
+<div class="jumbotron text-center">
+  <h1>My Requests</h1>
+  <p>See the requests you have made and received</p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-14">
+        <div class="col-sm-6">
+      <h2>Requests I've Made: </h2>
+      <% @made_requests.each do |request| %>
+          <h4>You have requested to book <%= request.property.name %> in <%= request.property.location %>  from <%= User.get(request.property.user_id).name%><br></h4>
+          <img class="thumbnail" src="<%= request.property.image_path%>" class="img-rounded" width="250" height="200">
+          Check-in date: <%=request.start_date.strftime("%d %B %Y")%><br>
+          Check-out date: <%=request.end_date.strftime("%d %B %Y")%><br>
+          Location: <%= request.property.location %><br>
+          About this listing: <%= request.property.description %><br>
+          £<%= request.property.price %> a day!<br>
+          <% end %>
+          </div>
+          <div class="col-sm-6">
+            <h2>Requests I've Received: </h2>
+            <%@received_requests.each do |request| %>
+              <h4>You have received booking request for <%= request.property.name %> in <%= request.property.location %> </h4>
+              <img class="thumbnail" src="<%= request.property.image_path%>" class="img-rounded" width="250" height="200">
+              About this listing: <%= request.property.description %><br>
+              £<%= request.property.price %> a day!<br>
+              <%= User.get(request.booker_id).name%> has requested to book this property<br>
+              Check-in date: <%=request.start_date.strftime("%d %B %Y")%><br>
+              Check-out date: <%=request.end_date.strftime("%d %B %Y")%>
+              <form action="/accept" method="post" >
+                <input type="hidden" name="property" value="<%=request.property.id%>">
+                <input type="hidden" name="request" value="<%=request.id%>">
+                <input type="submit" value="Accept">
+              </form>
+              <form action="/decline" method="post" >
+                <input type="hidden" name="request" value="<%=request.id%>">
+                <input type="submit" value="Decline">
+              </form>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
