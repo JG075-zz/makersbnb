@@ -32,7 +32,6 @@ class MakersBnb < Sinatra::Base
       Property.get(property_id).days(:conditions => {:date => day}).each do |x|
         Day.get(x.id).destroy!
       end
-
     end
     Request.get(request_id).destroy!
     redirect '/requests'
