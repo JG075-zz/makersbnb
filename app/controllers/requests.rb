@@ -21,7 +21,7 @@ class MakersBnb < Sinatra::Base
     filter_dates = []
     days = []
     (Date.parse(rent.start_date.to_s)..Date.parse(rent.end_date.to_s)).map(&:to_s).each do |day|
-      days << Day.first_or_create(date: day)
+      days << Day.first(date: day)
     end
     days.each do |y|
       filter_dates << y.date

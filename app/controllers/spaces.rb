@@ -28,7 +28,7 @@ class MakersBnb < Sinatra::Base
 
       if property.save
         (Date.parse(params[:start_date])..Date.parse(params[:end_date])).map(&:to_s).each do |day|
-          property.days << Day.first_or_create(date: day)
+          property.days << Day.create(date: day)
         end
         property.save
         redirect '/spaces'

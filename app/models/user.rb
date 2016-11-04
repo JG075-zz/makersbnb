@@ -10,6 +10,7 @@ class User
   property :name, String, required: true
   property :email, String, required: true, unique: true
   property :password_digest, Text, required: true
+  property :image, Text
 
   has n, :propertys
 
