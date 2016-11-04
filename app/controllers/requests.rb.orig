@@ -34,6 +34,7 @@ class MakersBnb < Sinatra::Base
           Day.get(x.id).destroy!
         end
       end
+<<<<<<< HEAD
       Request.get(request_id).destroy!
       redirect '/requests'
     else
@@ -42,6 +43,8 @@ class MakersBnb < Sinatra::Base
       user_properties = Property.all(user_id: current_user.id)
       @received_requests = user_properties.all.requests
       erb :'requests/index'
+=======
+>>>>>>> master
     end
 end
 
