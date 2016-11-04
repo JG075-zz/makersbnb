@@ -57,13 +57,15 @@
 	</nav>
 
     <% end %>
-        <% if flash[:errors] %>
+
+        <br><br><br><% if flash[:errors] %>
           <div id='errors'>
             <div class="alert alert-warning" role="alert">
             <%= flash[:errors] %>
             </div>
           </div>
         <% end %>
+
         <% if flash[:notice] %>
           <div id='notice'>
             <div class="alert alert-success" role="alert">
@@ -71,6 +73,9 @@
             </div>
           </div>
         <% end %>
+
+
+
       </header>
       </div>
     </div>
