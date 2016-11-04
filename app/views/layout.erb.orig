@@ -38,8 +38,15 @@
         width:280px;
         margin-top: 100px;
       }
+<<<<<<< HEAD
 
+      .login-form .col-md-4 {
+        margin-right: 640px;
+      }
+      .login-form .btn {
+=======
       .login-form .btn, .sign-up .btn {
+>>>>>>> master
         color: #ffffff;
         background-color: #ff7977;
         border-color: #e97b79;
