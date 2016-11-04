@@ -3,7 +3,7 @@ require_relative 'web_helper.rb'
 feature "users can sign up" do
   scenario "new user signs up" do
     expect { sign_up }.to change(User, :count).by(1)
-    expect(page).to have_content("Signed in as Li")
+    expect(page).to have_content("Li")
   end
   scenario "cannot sign up with same email" do
     sign_up
