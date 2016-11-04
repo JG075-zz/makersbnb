@@ -19,6 +19,7 @@ class Filter_Dates
     @days.each do |y|
       @filter_dates << y.date
     end
+    @filter_dates
   end
 
   def check_for_availability(start, finish)
