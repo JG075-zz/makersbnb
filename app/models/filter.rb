@@ -1,4 +1,4 @@
-class Dates
+class Filter_Dates
   attr_reader :start, :finish, :filter_dates
   attr_accessor :properties, :days
 

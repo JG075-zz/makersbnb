@@ -56,7 +56,7 @@ class MakersBnb < Sinatra::Base
     else
       @start_rent = params[:start]
       @end_rent = params[:end]
-      chosen_dates = Dates.new
+      chosen_dates = Filter_Dates.new
       chosen_dates.check_for_availability(params[:start], params[:end])
       @properties = chosen_dates.properties
       erb :'spaces/filter'

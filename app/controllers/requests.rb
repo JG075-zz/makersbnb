@@ -15,7 +15,7 @@ class MakersBnb < Sinatra::Base
   post '/accept' do
     property_id = params[:property]
     rent = Request.get(params[:request])
-    chosen_dates = Dates.new
+    chosen_dates = Filter_Dates.new
     chosen_dates.get_all_dates((rent.start_date.to_s),(rent.end_date.to_s))
     chosen_dates.create_filter_dates_array
     @days = chosen_dates.days
