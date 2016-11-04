@@ -7,112 +7,68 @@
     <link href="/datetimepicker/dist/css/bootstrap.css" rel="stylesheet">
     <!-- Bootstrap Datetimepicker CSS file -->
     <link href="/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
-
-    <style>
-      body {
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-      }
-      .header {
-        background: #49b2d2;
-        color: #fff;
-        font-size: 22px;
-        padding-left: 40px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      .container {
-        padding: 40px;
-      }
-      .login-form {
-        margin-top: 60px;
-      }
-      .login-form h1 {
-        margin-bottom: 50px;
-      }
-      .col-centered {
-        float: none;
-        margin: 0 auto;
-      }
-      .main-logo {
-        width:280px;
-        margin-top: 100px;
-      }
-
-      .login-form .btn, .sign-up .btn {
-        color: #ffffff;
-        background-color: #ff7977;
-        border-color: #e97b79;
-        margin-left: -10px;
-        padding: 10px 40px;
-      }
-      .login-form a {
-        color: #2DB25B;
-        text-decoration: underline;
-        margin-left: 32px;
-        display: block;
-        margin-top: 8px;
-      }
-      .login-form .col-sm-offset-6 {
-        padding-top: 5px;
-      }
-      .logo .col-md-4 {
-        text-align: center;
-        padding-left: 70px;
-      }
-      .sign-up h1 {
-        margin-bottom: 20px;
-      }
-
-    </style>
+    <link href="stylesheet.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
   </head>
   <body>
     <% if current_user %>
-    <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
 
-    </div>
+    <nav class="[ navbar navbar-fixed-top ][ navbar-bootsnipp animate ]" role="navigation">
+    	<div class="[ container-fluid ]">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/spaces">Spaces<span class="sr-only">(current)</span></a></li>
-        <li><a href="/requests">Requests</a></li>
-        <li><a href="/spaces/mylistings">My Listings</a></li>
-      </ul>
+			<div class="[ navbar-header ]">
+				<button type="button" class="[ navbar-toggle ]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="[ sr-only ]">Toggle navigation</span>
+					<span class="[ icon-bar ]"></span>
+					<span class="[ icon-bar ]"></span>
+					<span class="[ icon-bar ]"></span>
+				</button>
+				<div class="[ animbrand ]">
+					<a class="[ navbar-brand ][ animate ]" href="/"><img src="/images/logo.gif" id="logo"><img src="/images/logo-name.png" id="logo-name"></a>
+				</div>
+			</div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/profile">Signed in as <%= current_user.name %> </a></li>
-        <form action="/sessions" method="post" class="navbar-form navbar-right" role="logout">
-          <div class="form-group">
-            <input type="hidden" name="_method" value="delete">
-          </div>
-          <button type="submit" class="btn btn-default">Log out</button>&nbsp&nbsp&nbsp&nbsp
-        </form>
-      </ul>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
+				<ul class="[ nav navbar-nav navbar-right ]">
+          <li><a class="animate" href="/profile">&nbsp&nbsp<%=current_user.name%><span class="[ pull-left glyphicon glyphicon-user ]"></span></a></li>
+					<li>
+						<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">&nbsp&nbspSpaces <span class="[ pull-left glyphicon glyphicon-home ]"></span></a>
+						<ul class="[ dropdown-menu ]" role="menu">
+							<li><a href="/spaces/mylistings" class="[ animate ]">My Spaces <span class="[ pull-right glyphicon glyphicon-list ]"></span></a></li>
+							<li><a href="/spaces" class="[ animate ]">Find Spaces <span class="[ pull-right glyphicon glyphicon-search ]"></span></a></li>
+							<li><a href="/spaces/new" class="[ animate ]">Add New Space <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
+						</ul>
+					</li>
+
+          <li><a class="animate" href="/requests">&nbsp&nbspRequests<span class="[ pull-left glyphicon glyphicon-inbox ]"></span></a></li>
+          <li><form action="/sessions" method="post" class="navbar-form navbar-right" role="logout">
+            <div class="form-group">
+              <input type="hidden" name="_method" value="delete">
+            </div>
+            <button type="submit" class="btn btn-home">Log out<span class="[ pull-left glyphicon glyphicon-log-out ]"></button>
+          </form></li>
 
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+				</ul>
+			</div>
+		</div>
+
+	</nav>
+
     <% end %>
         <% if flash[:errors] %>
           <div id='errors'>
+            <div class="alert alert-warning" role="alert">
             <%= flash[:errors] %>
+            </div>
           </div>
         <% end %>
         <% if flash[:notice] %>
           <div id='notice'>
-            <%= flash[:notice] %>
+            <div class="alert alert-success" role="alert">
+              <%= flash[:notice] %>
+            </div>
           </div>
         <% end %>
       </header>

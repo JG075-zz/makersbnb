@@ -24,29 +24,9 @@
         <%= property.location %>
           About this listing: <%= property.description %><br>
           Only £<%= property.price %> a day!<br>
-          Available from <%= property.days.first.date.strftime("%d %B %Y") %> until <%= property.days.last.date.strftime("%d %B %Y")%><br>
           Contact <%=property.user.email%> for more info.
           </div>
-      <% end %>
-
-      <style>
-        .jumbotron {
-            background-color: #ff7977;
-            color: white;
-        }
-        .col-sm-4 {
-          margin-bottom: 40px;
-        }
-        h4 {
-          text-align: center;
-        }
-        .form-size {
-          margin-left: 40%;
-          margin-right: 40%;
-        }
-        .new-space {
-          text-align: center;
-          color: #ff7977;
-        }
-
-      </style>
+              <% end %>
+        </div>
+      </div>
+    </div>

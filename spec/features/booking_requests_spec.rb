@@ -17,7 +17,7 @@ feature "booking requests as a customer" do
     click_button("Log out")
     sign_up2
     visit '/requests'
-    expect(page).to have_content "All requests:"
+    expect(page).to have_content "See the requests you have made and received"
     expect(page).not_to have_content "super cool house"
   end
 
