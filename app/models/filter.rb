@@ -15,6 +15,7 @@ class Filter_Dates
     end
   end
 
+
   def create_filter_dates_array
     @days.each do |y|
       @filter_dates << y.date
