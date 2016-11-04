@@ -82,43 +82,26 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li><a href="/spaces">Spaces <span class="sr-only">(current)</span></a></li>
+        <li><a href="/spaces">Spaces<span class="sr-only">(current)</span></a></li>
         <li><a href="/requests">Requests</a></li>
         <li><a href="/spaces/mylistings">My Listings</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Signed in as <%= current_user.name %> </a></li>
+        <li><a href="/profile">Signed in as <%= current_user.name %> </a></li>
+        <form action="/sessions" method="post" class="navbar-form navbar-right" role="logout">
+          <div class="form-group">
+            <input type="hidden" name="_method" value="delete">
+          </div>
+          <button type="submit" class="btn btn-default">Log out</button>&nbsp&nbsp&nbsp&nbsp
+        </form>
       </ul>
 
-      <form action="/sessions" method="post" class="navbar-form navbar-right" role="logout">
-        <div class="form-group">
-          <input type="hidden" name="_method" value="delete">
-        </div>
-        <button type="submit" class="btn btn-default">Log out</button>
-      </form>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <!-- <div class="row header">
-          <div class="col-md-1">
-            <a class="btn btn-default" href="/" role="button"><img class="home-logo" src="/images/makersbnb.png"></a>
-          </div>
-          <div class="col-md-2">
-            <a class="btn btn-default" href="/spaces" role="button">Spaces</a>
-            <a class="btn btn-default" href="/requests" role="button">Requests</a>
-            <a class="btn btn-default" href="/spaces/mylistings" role="button">My Listings</a>
-          </div>
-          <div class="col-md-1 pull-right">
-            <form action="/sessions" method="post">
-              <input type="hidden" name="_method" value="delete">
-              <button class="btn btn-default" type="submit">Log out</button>
-            </form>
-          </div>
-          <div class="col-md-2 pull-middle">
-            <h4>Welcome, <%= current_user.name %></h4>
-          </div> -->
-        <% end %>
+    <% end %>
         <% if flash[:errors] %>
           <div id='errors'>
             <%= flash[:errors] %>
