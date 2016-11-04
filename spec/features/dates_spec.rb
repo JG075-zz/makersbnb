@@ -2,10 +2,7 @@ require_relative 'web_helper'
 
 feature "creating a property with available dates" do
 
-  scenario "users can make a booking" do
-    add_property
-    expect(page).to have_content "Available from 01 November 2016 until 03 November 2016"
-  end
+
 
   scenario "users must enter a valid date" do
     sign_up

@@ -1,28 +1,38 @@
-<h1>List of Available Spaces</h1>
-<p>Checkout our amazing spaces to rent for unbelivable prices!</p>
-  <form action="/spaces/filter">
-    <label for="start">Check-in: </label>
-    <input type='date' name='start'/>
-    <label for="end">Check-out: </label>
-    <input type='date' name='end'/>
-    <input type='submit' value='Filter'/>
+<div class="jumbotron text-center">
+  <h1>Rent a Space</h1>
+  <p>These properties are availbale for the dates you selected</p>
+  <form class="form-size" action="/spaces/filter">
+    <label for="pwd">Check-in:</label>
+    <input type="date" name='start' class="form-control" id="pwd">
+    <label for="pwd">Check-out:</label>
+    <input type="date" name='end' class="form-control" id="pwd">
+    <button type="submit" class="btn btn-default">Filter</button>
   </form>
-
-<ul id="properties">
-  <% @properties.each do |property| %>
-    <li>
-      <%= property.name %><br>
-      Location: <%= property.location %><br>
-      About this listing: <%= property.description %><br>
-      Only £<%= property.price %> a day!<br>
-      Available from <%= property.days.first.date.strftime("%d %B %Y") %> until <%= property.days.last.date.strftime("%d %B %Y")%><br>
-      Contact <%=property.user.email%> for more info.
-      <form action="/requests/new" method="post">
-        <input type="submit" value="Rent">
-        <input type="hidden" name="start_rent" value="<%=@start_rent%>">
-        <input type="hidden" name="end_rent" value="<%=@end_rent%>">
-        <input type="hidden" name="property" value="<%=property.id%>">
-      </form>
-    </li>
-  <% end %>
-</ul>
+</div>
+<div class="new-space">
+<form action="/spaces/new" method="get">
+  <button class="btn btn-default btn-lg" type="submit">Register new space</button>
+</form><br>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-14">
+      <% @properties.each do |property| %>
+        <div class="col-sm-4">
+          <h4><%= property.name %> in <%= property.location %></h4>
+          <img class="thumbnail" src="<%= property.image_path%>" class="img-rounded" width="304" height="236">
+        <%= property.location %>
+          About this listing: <%= property.description %><br>
+          Only £<%= property.price %> a day!<br>
+          Contact <%=property.user.email%> for more info.
+          <form action="/requests/new" method="post">
+            <input type="submit" value="Rent">
+            <input type="hidden" name="start_rent" value="<%=@start_rent%>">
+            <input type="hidden" name="end_rent" value="<%=@end_rent%>">
+            <input type="hidden" name="property" value="<%=property.id%>">
+          </form>
+          </div>
+        </div>
+      </div>
+      </div>
+      <% end %>
