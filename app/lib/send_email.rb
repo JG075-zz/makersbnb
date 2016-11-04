@@ -10,12 +10,10 @@ class SendEmail
   end
 
   def call(user)
-    p ENV["MAILGUN_DOMAIN"]
-    p user.email
-    mailer.send_message(ENV["MAILGUN_DOMAIN"], {from: 'mailgun@sandbox4ea7364b34d64c608f3cc57a4b2699f6.mailgun.org',
-          to: "jamesgardiner075@gmail.com",
-          subject: "help",
-          text: "me"})
+    mailer.send_message(ENV["MAILGUN_DOMAIN"], {from: 'mailgun@sandbox962ca6f0238746fb9838e8abcd0873fe.mailgun.org',
+          to: user.email,
+          subject: "Welcome to MakersBnb",
+          text: "Hello #{user.name},\nYou are truly awesome!"})
   end
 
   private
