@@ -10,7 +10,7 @@ class SendEmail
   end
 
   def call(user)
-    mailer.send_message(ENV["MAILGUN_DOMAIN"], {from: 'mailgun@sandbox962ca6f0238746fb9838e8abcd0873fe.mailgun.org',
+    mailer.send_message(ENV["MAILGUN_DOMAIN"], {from: "mailgun@#{ENV["MAILGUN_DOMAIN"]}",
           to: user.email,
           subject: "Welcome to MakersBnb",
           text: "Hello #{user.name},\nYou are truly awesome!"})

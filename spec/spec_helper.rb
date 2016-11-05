@@ -43,14 +43,10 @@ RSpec.configure do |config|
     stub_request(:get, /api.mailgun.net/).
       with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, body: "stubbed response", headers: {})
-      stub_request(:post, "https://api.mailgun.net/v3/sandbox962ca6f0238746fb9838e8abcd0873fe.mailgun.org/messages").
-          with(:body => {"from"=>"mailgun@sandbox962ca6f0238746fb9838e8abcd0873fe.mailgun.org", "subject"=>"Welcome to MakersBnb", "text"=>"Hello Li,\nYou are truly awesome!", "to"=>"Li@gmail.com"},
-               :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Basic YXBpOmtleS03OGFkODgyMWIwOGU1MDZmZGMzNGYwNWM0ZGE5YmQ2MA==', 'Content-Length'=>'167', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
-          to_return(:status => 200, :body => "", :headers => {})
-          stub_request(:post, "https://api.mailgun.net/v3/sandbox962ca6f0238746fb9838e8abcd0873fe.mailgun.org/messages").
-         with(:body => {"from"=>"mailgun@sandbox962ca6f0238746fb9838e8abcd0873fe.mailgun.org", "subject"=>"Welcome to MakersBnb", "text"=>"Hello James,\nYou are truly awesome!", "to"=>"James@gmail.com"},
-              :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Basic YXBpOmtleS03OGFkODgyMWIwOGU1MDZmZGMzNGYwNWM0ZGE5YmQ2MA==', 'Content-Length'=>'173', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
-         to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, /https:\/\/api.mailgun.net\/v3\/.*.mailgun.org\/messages/).
+        with(:body => {"from"=> /mailgun@.*.mailgun.org/, "subject"=> //, "text"=> //, "to"=> /.*@.*.com/},
+             :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Basic YXBpOmtleS01MDFkYmVmODc4MTcyMTFmMDkzM2Y5ZmRlMmQwNjFmMg==', 'Content-Length'=> //, 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
+        to_return(:status => 200, :body => "", :headers => {})
   end
 
   config.after(:each) do
