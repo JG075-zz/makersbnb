@@ -8,8 +8,8 @@
 
 .navbar-bootsnipp {
   background-color: rgb(255, 255, 255);
-	border-color: rgb(120, 120, 120);
-	border-radius: 0px;
+  border-color: rgb(255, 121, 119);
+  border-radius: 0px;
 	margin-bottom: 0px;
 	z-index: 100;
 }
@@ -103,4 +103,7 @@
 }
 .navbar .bootsnipp-profile > .dropdown-menu > li > .row img {
 	width: 100%;
+}
+.nav a:focus {
+    border-color: #ff7977 !important;
 }
