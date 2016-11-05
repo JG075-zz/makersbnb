@@ -1,4 +1,4 @@
-require_relative 'data_mapper_setup.rb'
+require_relative '../data_mapper_setup.rb'
 
 class Request
   include DataMapper::Resource
