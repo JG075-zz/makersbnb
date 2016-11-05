@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="js">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -58,7 +58,7 @@
 
     <% end %>
 
-        <br><br><br><% if flash[:errors] %>
+        <% if flash[:errors] %>
           <div id='errors'>
             <div class="alert alert-warning" role="alert">
             <%= flash[:errors] %>

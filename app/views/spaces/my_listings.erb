@@ -7,12 +7,12 @@
 </form><br>
 </div>
 <div class="container">
-  <div class="row">
+  <div class="row spaces">
     <div class="col-sm-14">
       <% @user_properties.each do |property| %>
         <div class="col-sm-4">
           <h4><%= property.name %> in <%= property.location %></h4>
-          <img class="thumbnail" src="<%= property.image_path%>" class="img-rounded" width="304" height="236">
+          <img class="thumbnail center-block" src="<%= property.image_path%>" class="img-rounded" width="304" height="236">
         <%= property.location %>
         <%= property.name %><br>
         Location: <%= property.location %><br>
