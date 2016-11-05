@@ -1,3 +1,5 @@
+.env
+
 # exclude everything in this folder
 app/public/uploads/*
 

@@ -1,4 +1,4 @@
-require_relative 'data_mapper_setup.rb'
+require './app/data_mapper_setup'
 
 class Property
   include DataMapper::Resource

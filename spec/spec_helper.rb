@@ -7,6 +7,8 @@ require 'database_cleaner'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
 
 Capybara.app = MakersBnb
 DatabaseCleaner.strategy = :truncation
@@ -29,6 +31,7 @@ DatabaseCleaner.strategy = :truncation
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
   config.include Capybara::DSL
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
@@ -37,6 +40,13 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    stub_request(:get, /api.mailgun.net/).
+      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "stubbed response", headers: {})
+      stub_request(:post, /https:\/\/api.mailgun.net\/v3\/.*.mailgun.org\/messages/).
+        with(:body => {"from"=> /mailgun@.*.mailgun.org/, "subject"=> //, "text"=> //, "to"=> /.*@.*.com/},
+             :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Basic YXBpOmtleS01MDFkYmVmODc4MTcyMTFmMDkzM2Y5ZmRlMmQwNjFmMg==', 'Content-Length'=> //, 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
+        to_return(:status => 200, :body => "", :headers => {})
   end
 
   config.after(:each) do

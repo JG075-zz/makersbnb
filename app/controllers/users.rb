@@ -1,3 +1,5 @@
+require './app/lib/send_email'
+
 class MakersBnb < Sinatra::Base
   get '/users/new' do
     erb :'users/new'
@@ -21,6 +23,7 @@ class MakersBnb < Sinatra::Base
                        image: @image)
     if user.save
       session[:user_id] = user.id
+      SendEmail.call(user)
       redirect '/spaces'
     else
       flash.now[:errors] = user.errors.full_messages
